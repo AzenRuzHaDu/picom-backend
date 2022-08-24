@@ -1,5 +1,10 @@
 package com.open.picom.business;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,10 +20,17 @@ import lombok.ToString;
 @ToString
 public class Utilisateur {
 
+    @NotNull
     private Long id;
+    @NotBlank
     private String nom;
-    private String prenom; 
-    private String email; 
-    private String motDePasse; 
+    @NotBlank
+    private String prenom;
+    @Email
+    @NotBlank
+    private String email;
+    @NotBlank
+    @Min(value = 8)
+    private String motDePasse;
 
 }

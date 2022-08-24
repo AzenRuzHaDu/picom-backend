@@ -1,5 +1,7 @@
 package com.open.picom.business;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,11 +16,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class Tarif {
-
+@NotNull
     private Long id;
+    @NotNull
     private double prixEnEuro; 
+    @NotNull
     private TrancheHorraire trancheHorraire; 
+    @NotNull
     private Zone zone;
+    @NotNull
     private Administrateur administrateur; 
     
 }
