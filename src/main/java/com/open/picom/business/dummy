@@ -1,9 +1,0 @@
-private List<Annonce> annonces = new ArrayList<Annonce>();
-
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
