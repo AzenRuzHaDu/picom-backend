@@ -14,11 +14,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @ToString
-public class Client extends Utilisateur {
+public class Zone {
 
-    private String numeroDeTelephone;
+    private Long id; 
+    private String nom;
     private List<Annonce> annonces = new ArrayList<Annonce>();
-    
+    private List<Arret> arrets = new ArrayList<Arret>();
+
 }

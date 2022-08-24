@@ -10,15 +10,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @ToString
-public class Client extends Utilisateur {
+public class TrancheHorraire {
 
-    private String numeroDeTelephone;
+    private Long id;
+    private int debut; 
     private List<Annonce> annonces = new ArrayList<Annonce>();
     
 }

@@ -1,8 +1,5 @@
 package com.open.picom.business;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,11 +11,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @ToString
-public class Client extends Utilisateur {
+public class Arret {
 
-    private String numeroDeTelephone;
-    private List<Annonce> annonces = new ArrayList<Annonce>();
-    
+private Long id;
+private String nom;
+private double longitude;
+private double latitude;
+private Zone zone;
+
 }

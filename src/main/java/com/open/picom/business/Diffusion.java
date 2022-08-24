@@ -1,7 +1,6 @@
 package com.open.picom.business;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -14,11 +13,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @ToString
-public class Client extends Utilisateur {
 
-    private String numeroDeTelephone;
-    private List<Annonce> annonces = new ArrayList<Annonce>();
-    
+public class Diffusion {
+
+    private Long id;
+    private LocalDateTime dateHeureDiffusion;
+    private Arret arret; 
+    private Annonce annonce;
+
 }
