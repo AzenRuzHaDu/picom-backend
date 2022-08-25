@@ -3,7 +3,9 @@ package com.open.picom.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +27,7 @@ public class Client extends Utilisateur {
     @NotBlank(message="Merci d'entrer une valeur")
     @NonNull
     private String numeroDeTelephone;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Annonce> annonces = new ArrayList<>();
     
 }

@@ -1,9 +1,11 @@
 package com.open.picom.business;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -31,6 +33,7 @@ public class Arret {
     @NotNull(message = "Merci d'entrer une valeur")
     private double latitude;
     @NotNull(message = "Merci d'entrer une valeur")
+    @ManyToOne(fetch=FetchType.EAGER)
     private Zone zone;
 
     public Arret(String nom,

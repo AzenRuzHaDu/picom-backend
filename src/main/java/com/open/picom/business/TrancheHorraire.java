@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 import lombok.EqualsAndHashCode;
@@ -27,6 +28,7 @@ public class TrancheHorraire {
     private Long id;
     @NotNull
     private int debut;
+    @ManyToMany(mappedBy = "trancheHorraires")
     private List<Annonce> annonces = new ArrayList<>();
     
     public TrancheHorraire(int debut) {

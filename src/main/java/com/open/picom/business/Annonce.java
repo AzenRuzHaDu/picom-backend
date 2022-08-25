@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -61,38 +63,41 @@ public class Annonce {
     @Min(value = 1)
     private double montantRegleEnEuros;
     @NotEmpty(message = "Merci d'entrer une valeur")
-    private List<Zone> zones = new ArrayList<>();
+    @ManyToMany
+    private List<Zone> zones;
     @NotEmpty(message = "Merci d'entrer une valeur")
-    private List<TrancheHorraire> trancheHorraires = new ArrayList<>();
+    @ManyToMany
+    private List<TrancheHorraire> trancheHorraires;
     @NotNull
+    @ManyToOne
     private Client client;
 
-    public Annonce(LocalDateTime dateHeureCreation,
-            LocalDateTime dateHeureDebut,
-            LocalDateTime dateHeureFin,
-            String contenu,
-            String titre,
-            String numeroCarte,
-            int anneeExpiration,
-            byte moisExpiration,
-            String cryptogramme,
-            double montantRegleEnEuros,
-            List<Zone> zones,
-            List<TrancheHorraire> trancheHorraires,
-            Client client) {
-        this.dateHeureCreation = dateHeureCreation;
-        this.dateHeureDebut = dateHeureDebut;
-        this.dateHeureFin = dateHeureFin;
-        this.contenu = contenu;
-        this.titre = titre;
-        this.numeroCarte = numeroCarte;
-        this.anneeExpiration = anneeExpiration;
-        this.moisExpiration = moisExpiration;
-        this.cryptogramme = cryptogramme;
-        this.montantRegleEnEuros = montantRegleEnEuros;
-        this.zones = zones;
-        this.trancheHorraires = trancheHorraires;
-        this.client = client;
-    }
+    // public Annonce(LocalDateTime dateHeureCreation,
+    //         LocalDateTime dateHeureDebut,
+    //         LocalDateTime dateHeureFin,
+    //         String contenu,
+    //         String titre,
+    //         String numeroCarte,
+    //         int anneeExpiration,
+    //         byte moisExpiration,
+    //         String cryptogramme,
+    //         double montantRegleEnEuros,
+    //         List<Zone> zones,
+    //         List<TrancheHorraire> trancheHorraires,
+    //         Client client) {
+    //     this.dateHeureCreation = dateHeureCreation;
+    //     this.dateHeureDebut = dateHeureDebut;
+    //     this.dateHeureFin = dateHeureFin;
+    //     this.contenu = contenu;
+    //     this.titre = titre;
+    //     this.numeroCarte = numeroCarte;
+    //     this.anneeExpiration = anneeExpiration;
+    //     this.moisExpiration = moisExpiration;
+    //     this.cryptogramme = cryptogramme;
+    //     this.montantRegleEnEuros = montantRegleEnEuros;
+    //     this.zones = zones;
+    //     this.trancheHorraires = trancheHorraires;
+    //     this.client = client;
+    // }
 
 }

@@ -1,9 +1,11 @@
 package com.open.picom.business;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.EqualsAndHashCode;
@@ -25,10 +27,14 @@ public class Tarif {
     @NotNull
     private double prixEnEuro;
     @NotNull(message="Merci d'entrer une tranche horraire")
+    
+    @ManyToOne(fetch=FetchType.EAGER)
     private TrancheHorraire trancheHorraire;
     @NotNull (message="Merci d'entrer une zone")
+    @ManyToOne(fetch=FetchType.EAGER)
     private Zone zone;
     @NotNull
+    @ManyToOne(fetch=FetchType.EAGER)
     private Administrateur administrateur;
 
     public Tarif(double prixEnEuro,TrancheHorraire trancheHorraire,

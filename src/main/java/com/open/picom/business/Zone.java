@@ -1,12 +1,15 @@
 package com.open.picom.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import io.micrometer.core.lang.NonNull;
@@ -31,6 +34,9 @@ public class Zone {
     @NotBlank
     @NonNull
     private String nom;
-    private List<Annonce> annonces = new ArrayList<>();
-    private List<Arret> arrets = new ArrayList<>();
+    @ManyToMany(mappedBy = "zones")
+    private List<Annonce> annonces;
+  
+    @OneToMany(mappedBy = "zone", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Arret> arrets;
 }
