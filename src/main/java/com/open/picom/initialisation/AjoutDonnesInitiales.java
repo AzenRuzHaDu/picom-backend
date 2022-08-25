@@ -135,14 +135,14 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
 
 
    
-    // private void ajouterAdministrateur() {
-    //     if (administrateurDao.count() == 0) {
-    //         Administrateur ad = new Administrateur();
-    //         ad.setEmail("admin1@orsys.fr");
-    //         ad.setMotDePasse("12345678");
-    //         administrateurDao.save(ad); 
-    //     }
-    // }
+    private void ajouterAdministrateur() {
+        if (administrateurDao.count() == 0) {
+            Administrateur ad = new Administrateur();
+            ad.setEmail("admin1@orsys.fr");
+            ad.setMotDePasse("12345678");
+            administrateurDao.save(ad); 
+        }
+    }
 
 
 

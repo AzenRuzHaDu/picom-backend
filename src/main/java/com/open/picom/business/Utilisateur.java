@@ -36,11 +36,14 @@ public abstract class Utilisateur {
     @NonNull
     private String nom;
     @NotBlank
+    @NonNull
     private String prenom;
     @Email(message = "Merci d'entrer un mail")
     @NotBlank
+    @NonNull
     private String email;
     @NotBlank
+    @NonNull
     @Length(min = 2)
     private String motDePasse;
 
