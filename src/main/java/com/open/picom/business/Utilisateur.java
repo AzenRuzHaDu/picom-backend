@@ -10,6 +10,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import io.micrometer.core.lang.NonNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,7 +42,7 @@ public abstract class Utilisateur {
     @NotBlank
     private String email;
     @NotBlank
-    @Min(value = 8)
+    @Length(min = 8)
     private String motDePasse;
 
 }
