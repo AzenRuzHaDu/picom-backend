@@ -1,30 +1,46 @@
 package com.open.picom.business;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
+
+@Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 public class Arret {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank(message = "Merci d'entrer une valeur")
+    private String nom;
+    @NotNull(message = "Merci d'entrer une valeur")
+    private double longitude;
+    @NotNull(message = "Merci d'entrer une valeur")
+    private double latitude;
+    @NotNull(message = "Merci d'entrer une valeur")
+    private Zone zone;
 
-private Long id;
-@NotBlank(message="Merci d'entrer une valeur")
-private String nom;
-@NotNull(message="Merci d'entrer une valeur")   
-private double longitude;
-@NotNull(message="Merci d'entrer une valeur")   
-private double latitude;
-@NotNull(message="Merci d'entrer une valeur")
-private Zone zone;
+    public Arret(String nom,
+            double longitude,
+            double latitude,
+            Zone zone) {
+        this.nom = nom;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.zone = zone;
+    }
+
 }

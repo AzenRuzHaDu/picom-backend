@@ -4,65 +4,95 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
 import org.hibernate.validator.constraints.CreditCardNumber;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
+@Entity
+@NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 
 public class Annonce {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotNull
-    private Long id; 
+    private LocalDateTime dateHeureCreation;
     @NotNull
-    private LocalDateTime dateHeureCreation; 
-    @FutureOrPresent(message ="Merci d'entrer la date d'aujourd'hui ou une date future")
+    @FutureOrPresent(message = "Merci d'entrer la date d'aujourd'hui ou une date future")
     private LocalDateTime dateHeureDebut;
-    @FutureOrPresent(message ="Merci d'entrer la date d'aujourd'hui ou une date future")
-    private LocalDateTime dateHeureFin;
-    @NotBlank(message="Merci d'écrire du contenu")
-    private String contenu;
-    @NotBlank (message="Merci d'écrire du contenu")
-    private String titre;
-    @CreditCardNumber(message="Ce numéro de carte n'est aps valide")
-    @NotBlank(message="Merci de renseigner votre numéro de carte")
-    private String numeroCarte; 
-    @NotNull(message="Merci d'entrer une valeur")
-    @Min(value = 22, message="Merci d'entrer une valeur supérieure à 22")
-    private int anneExpiration; 
-    @NotNull(message="Merci d'entrer une valeur")
-    private byte moisExpiration;
-    @NotBlank(message="Merci d'entrer une valeur")
-    private String cryptogramme; 
+    @FutureOrPresent(message = "Merci d'entrer la date d'aujourd'hui ou une date future")
     @NotNull
-    private double montantRegleEnEuros; 
-    @NotEmpty
+    private LocalDateTime dateHeureFin;
+    @NotBlank(message = "Merci d'écrire du contenu")
+    @Lob
+    private String contenu;
+    @NotBlank(message = "Merci d'écrire du contenu")
+    private String titre = "Sans Titre";
+    @CreditCardNumber(message = "Ce numéro de carte n'est aps valide")
+    @NotBlank(message = "Merci de renseigner votre numéro de carte")
+    private String numeroCarte;
+    @NotNull(message = "Merci d'entrer une valeur")
+    @Min(value = 22, message = "Merci d'entrer une valeur supérieure à 22")
+    private int anneeExpiration;
+    @NotNull(message = "Merci d'entrer une valeur")
+    private byte moisExpiration;
+    @NotBlank(message = "Merci d'entrer une valeur")
+    private String cryptogramme;
+    @NotNull
+    @Min(value = 1)
+    private double montantRegleEnEuros;
+    @NotEmpty(message = "Merci d'entrer une valeur")
     private List<Zone> zones = new ArrayList<>();
-    @NotEmpty
+    @NotEmpty(message = "Merci d'entrer une valeur")
     private List<TrancheHorraire> trancheHorraires = new ArrayList<>();
     @NotNull
     private Client client;
 
-
-    public Annonce() {
-        this.titre = "Sans titre";
-    } 
-
-
-    
+    public Annonce(LocalDateTime dateHeureCreation,
+            LocalDateTime dateHeureDebut,
+            LocalDateTime dateHeureFin,
+            String contenu,
+            String titre,
+            String numeroCarte,
+            int anneeExpiration,
+            byte moisExpiration,
+            String cryptogramme,
+            double montantRegleEnEuros,
+            List<Zone> zones,
+            List<TrancheHorraire> trancheHorraires,
+            Client client) {
+        this.dateHeureCreation = dateHeureCreation;
+        this.dateHeureDebut = dateHeureDebut;
+        this.dateHeureFin = dateHeureFin;
+        this.contenu = contenu;
+        this.titre = titre;
+        this.numeroCarte = numeroCarte;
+        this.anneeExpiration = anneeExpiration;
+        this.moisExpiration = moisExpiration;
+        this.cryptogramme = cryptogramme;
+        this.montantRegleEnEuros = montantRegleEnEuros;
+        this.zones = zones;
+        this.trancheHorraires = trancheHorraires;
+        this.client = client;
+    }
 
 }
