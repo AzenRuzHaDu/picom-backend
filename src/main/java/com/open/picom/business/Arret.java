@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Entity
 @NoArgsConstructor
 @Getter
@@ -33,12 +32,12 @@ public class Arret {
     @NotNull(message = "Merci d'entrer une valeur")
     private double latitude;
     @NotNull(message = "Merci d'entrer une valeur")
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Zone zone;
 
     public Arret(String nom,
-            double longitude,
             double latitude,
+            double longitude,
             Zone zone) {
         this.nom = nom;
         this.longitude = longitude;

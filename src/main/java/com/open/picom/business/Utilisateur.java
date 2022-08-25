@@ -41,7 +41,7 @@ public abstract class Utilisateur {
     @NotBlank
     private String email;
     @NotBlank
-    @Length(min = 8)
+    @Length(min = 2)
     private String motDePasse;
 
 }
