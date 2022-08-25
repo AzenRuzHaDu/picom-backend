@@ -16,15 +16,15 @@ import lombok.ToString;
 @EqualsAndHashCode
 @ToString
 public class Tarif {
-@NotNull
+    @NotNull
     private Long id;
     @NotNull
-    private double prixEnEuro; 
+    private double prixEnEuro;
     @NotNull
-    private TrancheHorraire trancheHorraire; 
+    private TrancheHorraire trancheHorraire;
     @NotNull
     private Zone zone;
     @NotNull
-    private Administrateur administrateur; 
-    
+    private Administrateur administrateur;
+
 }
