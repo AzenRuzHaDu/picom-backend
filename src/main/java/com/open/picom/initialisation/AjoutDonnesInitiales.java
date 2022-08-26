@@ -10,13 +10,11 @@ import com.open.picom.business.Administrateur;
 import com.open.picom.business.Arret;
 import com.open.picom.business.Client;
 import com.open.picom.business.TrancheHorraire;
-import com.open.picom.business.Utilisateur;
 import com.open.picom.business.Zone;
 import com.open.picom.dao.AdministrateurDao;
 import com.open.picom.dao.ArretDao;
 import com.open.picom.dao.ClientDao;
 import com.open.picom.dao.TrancheHorraireDao;
-import com.open.picom.dao.UtilisateurDao;
 import com.open.picom.dao.ZoneDao;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +26,6 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
     private final ZoneDao zoneDao;
     private final ArretDao arretDao;
     private final TrancheHorraireDao trancheHorraireDao;
-    private final UtilisateurDao utilisateurDao;
     private final AdministrateurDao administrateurDao;
     private final ClientDao clientDao;
 

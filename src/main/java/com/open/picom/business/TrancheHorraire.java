@@ -29,7 +29,7 @@ public class TrancheHorraire {
     @NotNull
     private int debut;
     @ManyToMany(mappedBy = "trancheHorraires")
-    private List<Annonce> annonces = new ArrayList<>();
+    private List<Annonce> annonces;
     
     public TrancheHorraire(int debut) {
         this.debut = debut;
