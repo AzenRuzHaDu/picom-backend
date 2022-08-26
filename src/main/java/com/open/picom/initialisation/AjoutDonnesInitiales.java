@@ -37,6 +37,8 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         ajouterZone();
         ajouterArret();
         ajouterTrancheHorraire();
+        ajouterAdministrateur();
+        ajouterClient();
     }
 
     private void ajouterZone() {
@@ -138,21 +140,23 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
     private void ajouterAdministrateur() {
         if (administrateurDao.count() == 0) {
             Administrateur ad = new Administrateur();
+            ad.setNom("Le Bihan");
+            ad.setPrenom("Soazig");
             ad.setEmail("admin1@orsys.fr");
             ad.setMotDePasse("12345678");
             administrateurDao.save(ad); 
         }
     }
 
-
-
-    // private void ajouterClient(){
-    //     if (clientDao.count() == 0) {
-    //         Client c = new Client();
-    //         c.setEmail("client1@orsys.fr");
-    //         c.setMotDePasse("12345678");
-    //         clientDao.save(c);
-    //     }
-    // }
-
+    private void ajouterClient(){
+        if (clientDao.count() == 0) {
+            Client c = new Client();
+            c.setNom("Cote");
+            c.setPrenom("FX");
+            c.setNumeroDeTelephone("0603051278");
+            c.setEmail("client1@orsys.fr");
+            c.setMotDePasse("12345678");
+            clientDao.save(c);
+        }
+    }
 }
