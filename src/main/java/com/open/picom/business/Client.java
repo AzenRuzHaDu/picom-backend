@@ -28,6 +28,6 @@ public class Client extends Utilisateur {
     @NonNull
     private String numeroDeTelephone;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Annonce> annonces = new ArrayList<>();
+    private List<Annonce> annonces;
     
 }
