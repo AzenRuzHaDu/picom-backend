@@ -11,4 +11,6 @@ public interface AnnonceService {
 	List<Annonce> listeDesAnnonces(Long idClient);
 	
 	Annonce ajouterAnnonce(@Valid Annonce annonce);
+	
+	Annonce recupererAnnonce(Long id);
 }

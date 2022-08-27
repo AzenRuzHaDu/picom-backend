@@ -30,5 +30,11 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonce;
 	}
 
+	@Override
+	public Annonce recupererAnnonce(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
