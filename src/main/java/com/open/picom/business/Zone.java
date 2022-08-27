@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.micrometer.core.lang.NonNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,8 +37,9 @@ public class Zone {
     @NonNull
     private String nom;
     @ManyToMany(mappedBy = "zones")
+	
     private List<Annonce> annonces;
-  
+    @JsonIgnore
     @OneToMany(mappedBy = "zone", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Arret> arrets;
 }

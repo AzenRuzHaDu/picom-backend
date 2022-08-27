@@ -5,16 +5,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
+@NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = false)
-@ToString
+
 public class TarifDto {
 
 	@Id
@@ -25,11 +28,12 @@ public class TarifDto {
 	private double prixEnEuro;
 	
 	@NotNull(message = "Merci d'entrer une tranche horraire")
-	long idTrancheHorraire;
+	Long idTrancheHorraire;
+
 	
 	@NotNull(message = "Merci d'entrer une zone")
-	long  idZone;
+	Long  idZone;
 	
 	@NotNull
-	long idAdministrateur;
+	Long idAdministrateur;
 }
