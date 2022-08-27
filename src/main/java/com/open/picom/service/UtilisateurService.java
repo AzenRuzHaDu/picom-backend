@@ -24,5 +24,7 @@ public interface UtilisateurService {
 	Utilisateur recupererUtilisateur(String email);
 	
 	Administrateur recupererUtilisateur(Long id);
+	
+	Client recupererClient(Long id);
 
 }
