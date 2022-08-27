@@ -8,7 +8,7 @@ import com.open.picom.business.Annonce;
 
 public interface AnnonceService {
 	
-	List<Annonce> listeDesAnnonces();
+	List<Annonce> listeDesAnnonces(Long idClient);
 	
 	Annonce ajouterAnnonce(@Valid Annonce annonce);
 }

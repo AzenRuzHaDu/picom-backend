@@ -19,9 +19,9 @@ public class AnnonceServiceImpl implements AnnonceService {
 
 	AnnonceDao annonceDao;
 	@Override
-	public List<Annonce> listeDesAnnonces() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Annonce> listeDesAnnonces(Long idClient) {
+		return annonceDao.findByIdClient(idClient);
+		
 	}
 
 	@Override
@@ -30,4 +30,5 @@ public class AnnonceServiceImpl implements AnnonceService {
 		return annonce;
 	}
 
+	
 }
