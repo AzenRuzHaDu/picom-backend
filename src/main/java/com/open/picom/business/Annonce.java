@@ -71,32 +71,7 @@ public class Annonce {
     @ManyToOne
     private Client client;
 
-    public Annonce(LocalDateTime dateHeureCreation,
-            LocalDateTime dateHeureDebut,
-            LocalDateTime dateHeureFin,
-            String contenu,
-            String titre,
-            String numeroCarte,
-            int anneeExpiration,
-            byte moisExpiration,
-            String cryptogramme,
-            double montantRegleEnEuros,
-            List<Zone> zones,
-            List<TrancheHorraire> trancheHorraires,
-            Client client) {
-        this.dateHeureCreation = dateHeureCreation;
-        this.dateHeureDebut = dateHeureDebut;
-        this.dateHeureFin = dateHeureFin;
-        this.contenu = contenu;
-        this.titre = titre;
-        this.numeroCarte = numeroCarte;
-        this.anneeExpiration = anneeExpiration;
-        this.moisExpiration = moisExpiration;
-        this.cryptogramme = cryptogramme;
-        this.montantRegleEnEuros = montantRegleEnEuros;
-        this.zones = zones;
-        this.trancheHorraires = trancheHorraires;
-        this.client = client;
-    }
+   
+   
 
 }
