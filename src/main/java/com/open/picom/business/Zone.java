@@ -36,8 +36,9 @@ public class Zone {
     @NotBlank
     @NonNull
     private String nom;
+    
     @ManyToMany(mappedBy = "zones")
-	
+	@JsonIgnore
     private List<Annonce> annonces;
     @JsonIgnore
     @OneToMany(mappedBy = "zone", cascade = CascadeType.ALL, fetch=FetchType.EAGER)

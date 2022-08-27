@@ -31,6 +31,7 @@ public class TrancheHorraire {
     @NotNull
     private int debut;
     @ManyToMany(mappedBy = "trancheHorraires")
+    @JsonIgnore
     private List<Annonce> annonces;
     
     public TrancheHorraire(int debut) {
