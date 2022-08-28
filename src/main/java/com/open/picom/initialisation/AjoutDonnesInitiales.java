@@ -51,7 +51,7 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         ajouterClient("mail2@orsys.fr");
         ajouterAnnonce(3L, "titre 3");	
         ajouterAnnonce(2L, "titre 2");
-       // ajouterDiffusion();
+        ajouterDiffusion();
     }
 
     private void ajouterAnnonce(Long idClient, String titre) {
