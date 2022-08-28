@@ -1,19 +1,26 @@
 package com.open.picom.initialisation;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.open.picom.business.Administrateur;
+import com.open.picom.business.Annonce;
 import com.open.picom.business.Arret;
 import com.open.picom.business.Client;
+import com.open.picom.business.Diffusion;
 import com.open.picom.business.TrancheHorraire;
 import com.open.picom.business.Zone;
 import com.open.picom.dao.AdministrateurDao;
+import com.open.picom.dao.AnnonceDao;
 import com.open.picom.dao.ArretDao;
 import com.open.picom.dao.ClientDao;
+import com.open.picom.dao.DiffusionDao;
 import com.open.picom.dao.TrancheHorraireDao;
 import com.open.picom.dao.ZoneDao;
 
@@ -28,6 +35,11 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
     private final TrancheHorraireDao trancheHorraireDao;
     private final AdministrateurDao administrateurDao;
     private final ClientDao clientDao;
+    private final DiffusionDao diffusionDao;
+    private final AnnonceDao annonceDao;
+    
+    private List<Zone> zones;
+	private List<TrancheHorraire> trancheHorraires;
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,10 +47,50 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         ajouterArret();
         ajouterTrancheHorraire();
         ajouterAdministrateur();
-        ajouterClient();
+        ajouterClient("mail@orsys.fr");
+        ajouterClient("mail2@orsys.fr");
+        ajouterAnnonce(3L, "titre 3");	
+        ajouterAnnonce(2L, "titre 2");
+       // ajouterDiffusion();
     }
 
-    private void ajouterZone() {
+    private void ajouterAnnonce(Long idClient, String titre) {
+    	
+    	Annonce annonce = new Annonce();
+    	annonce.setAnneeExpiration(25);
+    	annonce.setClient(clientDao.findById(idClient).get());
+    	annonce.setContenu("contenu");
+    	annonce.setCryptogramme("123");
+    	annonce.setDateHeureCreation(LocalDateTime.now().plusMonths(1));
+    	annonce.setDateHeureDebut(LocalDateTime.now().plusMonths(1));
+    	annonce.setDateHeureFin(LocalDateTime.now().plusMonths(1));
+    	annonce.setMoisExpiration((byte) 12);
+    	annonce.setMontantRegleEnEuros(25);
+    	annonce.setNumeroCarte("1111222233334444");
+    	annonce.setTitre(titre);
+    	zones.add(zoneDao.findById(1L).orElse(null));
+    	annonce.setZones(zones);
+    	trancheHorraires.add(trancheHorraireDao.findById(6L).get());
+    	annonce.setTrancheHorraires(trancheHorraires);
+    	annonceDao.save(annonce);
+    	
+    	
+
+    	
+    	
+	}
+
+	private void ajouterDiffusion() {
+    	Diffusion diffusion = new  Diffusion();
+    	diffusion.setDateHeureDiffusion(LocalDateTime.now());
+    	diffusion.setAnnonce(annonceDao.findById(1L).orElse(null));
+    	diffusion.setArret(arretDao.findById(1L).orElse(null));
+    	diffusionDao.save(diffusion);
+    	
+    	
+	}
+
+	private void ajouterZone() {
         if (zoneDao.count() == 0) {
             for (int i = 0; i < 5; i++) {
                 Zone zone = new Zone();
@@ -145,15 +197,15 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         }
     }
 
-    private void ajouterClient(){
-        if (clientDao.count() == 0) {
+    private void ajouterClient(String email){
+        //if (clientDao.count() == 0) {
             Client c = new Client();
             c.setNom("Cote");
             c.setPrenom("FX");
             c.setNumeroDeTelephone("0603051278");
-            c.setEmail("client1@orsys.fr");
+            c.setEmail(email);
             c.setMotDePasse("12345678");
             clientDao.save(c);
-        }
+        //}
     }
 }

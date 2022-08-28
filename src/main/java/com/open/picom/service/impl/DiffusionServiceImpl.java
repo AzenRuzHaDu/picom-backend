@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.open.picom.business.Client;
 import com.open.picom.business.Diffusion;
 import com.open.picom.dao.AdministrateurDao;
 import com.open.picom.dao.ClientDao;
@@ -18,15 +19,20 @@ import lombok.AllArgsConstructor;
 public class DiffusionServiceImpl implements DiffusionService {
 
 	DiffusionDao diffusionDao;
-	@Override
-	public List<Diffusion> listeDesDiffusions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Diffusion> listeDesDiffusions() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public Diffusion recupererDiffusion(Long id) {
 		return diffusionDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Diffusion> listeDesDiffusions(Client client) {
+		return diffusionDao.listeDesDiffusionParClient(client);
 	}
 
 }
