@@ -63,4 +63,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return clientDto;		
 	}
 
+	@Override
+	public Administrateur recupererUtilisateur(Long id) {
+		return administrateurDao.findById(id).orElse(null);
+		
+	}
+
+	@Override
+	public Client recupererClient(Long id) {
+		return clientDao.findById(id).orElse(null);
+	}
+
 }

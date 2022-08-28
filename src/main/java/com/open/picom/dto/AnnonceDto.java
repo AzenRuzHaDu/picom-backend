@@ -1,4 +1,4 @@
-package com.open.picom.business;
+package com.open.picom.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,54 +24,64 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 
-public class Annonce {
+public class AnnonceDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotNull
     private LocalDateTime dateHeureCreation;
+    
     @NotNull
     @FutureOrPresent(message = "Merci d'entrer la date d'aujourd'hui ou une date future")
     private LocalDateTime dateHeureDebut;
+    
     @FutureOrPresent(message = "Merci d'entrer la date d'aujourd'hui ou une date future")
     @NotNull
     private LocalDateTime dateHeureFin;
+    
     @NotBlank(message = "Merci d'écrire du contenu")
     @Lob
     private String contenu;
+    
     @NotBlank(message = "Merci d'écrire du contenu")
     private String titre = "Sans Titre";
+    
     @CreditCardNumber(message = "Ce numéro de carte n'est aps valide")
     @NotBlank(message = "Merci de renseigner votre numéro de carte")
     private String numeroCarte;
+    
     @NotNull(message = "Merci d'entrer une valeur")
     @Min(value = 22, message = "Merci d'entrer une valeur supérieure à 22")
     private int anneeExpiration;
+    
     @NotNull(message = "Merci d'entrer une valeur")
     private byte moisExpiration;
+    
     @NotBlank(message = "Merci d'entrer une valeur")
     private String cryptogramme;
+    
     @NotNull
     @Min(value = 1)
     private double montantRegleEnEuros;
+    
     @NotEmpty(message = "Merci d'entrer une valeur")
-    @ManyToMany
-    private List<Zone> zones;
+    private List<Long> idZones;
+    
     @NotEmpty(message = "Merci d'entrer une valeur")
-    @ManyToMany
-    private List<TrancheHorraire> trancheHorraires;
+    private List<Long> idTrancheHorraires;
+    
     @NotNull
-    @ManyToOne
-    private Client client;
+    private Long idClient;
+    
 
-   
-   
+  
 
 }
