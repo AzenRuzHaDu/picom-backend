@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -69,6 +71,7 @@ public class Annonce {
     private List<TrancheHorraire> trancheHorraires;
     @NotNull
     @ManyToOne
+    @JsonIgnore
     private Client client;
 
    

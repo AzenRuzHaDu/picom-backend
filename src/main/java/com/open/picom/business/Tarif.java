@@ -37,7 +37,7 @@ public class Tarif {
     private Zone zone;
     @NotNull
     @ManyToOne(fetch=FetchType.EAGER)
-    @JsonIgnore
+    
     private Administrateur administrateur;
 
     public Tarif(double prixEnEuro,TrancheHorraire trancheHorraire,

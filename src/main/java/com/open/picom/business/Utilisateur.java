@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,6 +47,7 @@ public abstract class Utilisateur {
     @NotBlank
     @NonNull
     @Length(min = 2)
+    @JsonIgnore
     private String motDePasse;
 
 }

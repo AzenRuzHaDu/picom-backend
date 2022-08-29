@@ -9,5 +9,8 @@ import lombok.NonNull;
 public interface UtilisateurDao extends JpaRepository<Utilisateur, Long> {
 
 	Utilisateur findByEmail(@NonNull String email);
+
+	Utilisateur findLastByEmailAndMotDePasse(String email, String motDePasse);
+
     
 }
