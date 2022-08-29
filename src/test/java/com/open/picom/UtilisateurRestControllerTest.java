@@ -31,7 +31,7 @@ public class UtilisateurRestControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	private static final String TEST_EMAIL = "jsample@orsys.fr";
+	private static final String TEST_EMAIL = "mail@orsys.fr";
 	
 	 @Test
 	 @Order(1)
