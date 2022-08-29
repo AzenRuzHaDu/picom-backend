@@ -1,6 +1,5 @@
 package com.open.picom.controller.rest;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.open.picom.business.Annonce;
-import com.open.picom.business.Tarif;
 import com.open.picom.business.TrancheHorraire;
 import com.open.picom.business.Zone;
 import com.open.picom.dto.AnnonceDto;
-import com.open.picom.dto.TarifDto;
 import com.open.picom.service.AnnonceService;
 import com.open.picom.service.TrancheHorraireService;
 import com.open.picom.service.UtilisateurService;
@@ -32,6 +30,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RequestMapping("/api/")
 @Validated
 public class AnnonceRestController {
