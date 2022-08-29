@@ -12,6 +12,7 @@ import com.open.picom.business.Annonce;
 import com.open.picom.business.Arret;
 import com.open.picom.business.Client;
 import com.open.picom.business.Diffusion;
+import com.open.picom.business.Tarif;
 import com.open.picom.business.TrancheHorraire;
 import com.open.picom.business.Zone;
 import com.open.picom.dao.AdministrateurDao;
@@ -19,6 +20,7 @@ import com.open.picom.dao.AnnonceDao;
 import com.open.picom.dao.ArretDao;
 import com.open.picom.dao.ClientDao;
 import com.open.picom.dao.DiffusionDao;
+import com.open.picom.dao.TarifDao;
 import com.open.picom.dao.TrancheHorraireDao;
 import com.open.picom.dao.ZoneDao;
 
@@ -35,9 +37,10 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
     private final ClientDao clientDao;
     private final DiffusionDao diffusionDao;
     private final AnnonceDao annonceDao;
-    
+    private final TarifDao tarifDao;
+
     private List<Zone> zones;
-	private List<TrancheHorraire> trancheHorraires;
+    private List<TrancheHorraire> trancheHorraires;
 
     @Override
     public void run(String... args) throws Exception {
@@ -47,48 +50,71 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         ajouterAdministrateur();
         ajouterClient("mail@orsys.fr");
         ajouterClient("mail2@orsys.fr");
-        ajouterAnnonce(3L, "titre 3");	
+        ajouterAnnonce(3L, "titre 3");
         ajouterAnnonce(2L, "titre 2");
         ajouterDiffusion();
+        ajouterTarif(1L);
+    }
+
+    private void ajouterTarif(long idAdmin) {
+        if (tarifDao.count() == 0) {
+            for (TrancheHorraire t : trancheHorraireDao.findAll()) {
+                double budget = 1000.0;
+                for (Zone z : zoneDao.findAll()) {
+                    Tarif tarif = new Tarif();
+                    tarif.setPrixEnEuro(budget);
+                    tarif.setTrancheHorraire(t);
+                    tarif.setZone(zoneDao.findById(z.getId()).get());
+                    tarif.setAdministrateur(administrateurDao.findById(idAdmin).get());
+                    tarifDao.save(tarif);
+                    if (t.getId() % 2L == 0){
+                        budget -= 200.0;
+                    }
+                    else {
+                        budget -= 100.0;
+                    }
+                    
+                }
+            }
+        }
     }
 
     private void ajouterAnnonce(Long idClient, String titre) {
-    	
-    	Annonce annonce = new Annonce();
-    	annonce.setAnneeExpiration(25);
-    	annonce.setClient(clientDao.findById(idClient).get());
-    	annonce.setContenu("contenu");
-    	annonce.setCryptogramme("123");
-    	annonce.setDateHeureCreation(LocalDateTime.now().plusMonths(1));
-    	annonce.setDateHeureDebut(LocalDateTime.now().plusMonths(1));
-    	annonce.setDateHeureFin(LocalDateTime.now().plusMonths(1));
-    	annonce.setMoisExpiration((byte) 12);
-    	annonce.setMontantRegleEnEuros(25);
-    	annonce.setNumeroCarte("1111222233334444");
-    	annonce.setTitre(titre);
-    	zones.add(zoneDao.findById(1L).orElse(null));
-    	annonce.setZones(zones);
-    	trancheHorraires.add(trancheHorraireDao.findById(6L).get());
-    	annonce.setTrancheHorraires(trancheHorraires);
-    	annonceDao.save(annonce);
-    	
-    	
+        if (annonceDao.count() == 0) {
+            Annonce annonce = new Annonce();
+            annonce.setAnneeExpiration(25);
+            annonce.setClient(clientDao.findById(idClient).get());
+            annonce.setContenu("contenu");
+            annonce.setCryptogramme("123");
+            annonce.setDateHeureCreation(LocalDateTime.now().plusMonths(1));
+            annonce.setDateHeureDebut(LocalDateTime.now().plusMonths(1));
+            annonce.setDateHeureFin(LocalDateTime.now().plusMonths(1));
+            annonce.setMoisExpiration((byte) 12);
+            annonce.setMontantRegleEnEuros(25);
+            annonce.setNumeroCarte("1111222233334444");
+            annonce.setTitre(titre);
+            zones.add(zoneDao.findById(1L).orElse(null));
+            annonce.setZones(zones);
+            trancheHorraires.add(trancheHorraireDao.findById(6L).get());
+            annonce.setTrancheHorraires(trancheHorraires);
+            annonceDao.save(annonce);
 
-    	
-    	
-	}
+        }
 
-	private void ajouterDiffusion() {
-    	Diffusion diffusion = new  Diffusion();
-    	diffusion.setDateHeureDiffusion(LocalDateTime.now());
-    	diffusion.setAnnonce(annonceDao.findById(1L).orElse(null));
-    	diffusion.setArret(arretDao.findById(1L).orElse(null));
-    	diffusionDao.save(diffusion);
-    	
-    	
-	}
+    }
 
-	private void ajouterZone() {
+    private void ajouterDiffusion() {
+        if (diffusionDao.count() == 0) {
+            Diffusion diffusion = new Diffusion();
+            diffusion.setDateHeureDiffusion(LocalDateTime.now());
+            diffusion.setAnnonce(annonceDao.findById(1L).orElse(null));
+            diffusion.setArret(arretDao.findById(1L).orElse(null));
+            diffusionDao.save(diffusion);
+        }
+
+    }
+
+    private void ajouterZone() {
         if (zoneDao.count() == 0) {
             for (int i = 0; i < 5; i++) {
                 Zone zone = new Zone();
@@ -182,8 +208,6 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
         }
     }
 
-
-   
     private void ajouterAdministrateur() {
         if (administrateurDao.count() == 0) {
             Administrateur ad = new Administrateur();
@@ -191,19 +215,19 @@ public class AjoutDonnesInitiales implements CommandLineRunner {
             ad.setPrenom("Soazig");
             ad.setEmail("admin1@orsys.fr");
             ad.setMotDePasse("12345678");
-            administrateurDao.save(ad); 
+            administrateurDao.save(ad);
         }
     }
 
-    private void ajouterClient(String email){
-        //if (clientDao.count() == 0) {
-            Client c = new Client();
-            c.setNom("Cote");
-            c.setPrenom("FX");
-            c.setNumeroDeTelephone("0603051278");
-            c.setEmail(email);
-            c.setMotDePasse("12345678");
-            clientDao.save(c);
-        //}
+    private void ajouterClient(String email) {
+        // if (clientDao.count() == 0) {
+        Client c = new Client();
+        c.setNom("Cote");
+        c.setPrenom("FX");
+        c.setNumeroDeTelephone("0603051278");
+        c.setEmail(email);
+        c.setMotDePasse("12345678");
+        clientDao.save(c);
+        // }
     }
 }
