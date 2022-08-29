@@ -31,11 +31,11 @@ public class UtilisateurRestControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	private static final String TEST_EMAIL = "mail@orsys.fr";
+	private static final String TEST_EMAIL = "test@orsys.fr";
 	
 	 @Test
 	 @Order(1)
-    public void testerAjouterUtilisateur() throws Exception {
+    void testerAjouterUtilisateur() throws Exception {
 
 		 	ClientDto clientDto = new ClientDto();
 		 	clientDto.setNom("SAMPLE");
@@ -44,7 +44,7 @@ public class UtilisateurRestControllerTest {
 		 	clientDto.setMotDePasse("123");
 		 	clientDto.setNumeroDeTelephone("010203040506");
 		 	
-            mockMvc.perform(MockMvcRequestBuilders.post("/api/utilisateursDto") 
+            mockMvc.perform(MockMvcRequestBuilders.post("/api/client") 
             		// on place l'objet utilisateurDto dans le Request Body
             .content(objectMapper.writeValueAsString(clientDto))
             .contentType(MediaType.APPLICATION_JSON)
@@ -52,7 +52,7 @@ public class UtilisateurRestControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.nom").value(clientDto.getNom()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.prenom").value(clientDto.getPrenom()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(clientDto.getEmail()))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.numeroDeTelephone").value(clientDto.getEmail()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.numeroDeTelephone").value(clientDto.getNumeroDeTelephone()))
 
             .andExpect(status().isCreated())
             .andDo(MockMvcResultHandlers.print());
@@ -61,12 +61,13 @@ public class UtilisateurRestControllerTest {
 	 
 	@Test
 	@Order(2)
-	public void testerAjouterUtilisateurDoublon() throws Exception {
+	void testerAjouterUtilisateurDoublon() throws Exception {
 		ClientDto clientDto = new ClientDto();
 		clientDto.setNom("SAMPLE");
 		clientDto.setPrenom("John");
 		clientDto.setEmail(TEST_EMAIL);
 		clientDto.setMotDePasse("123");
+		clientDto.setNumeroDeTelephone("010203040506");
 		
 
          mockMvc.perform(MockMvcRequestBuilders.post("/api/client")  
