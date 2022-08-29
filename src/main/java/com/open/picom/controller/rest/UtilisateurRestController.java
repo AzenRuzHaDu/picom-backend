@@ -32,7 +32,7 @@ public class UtilisateurRestController {
 
 	private final UtilisateurService utilisateurService;
 	
-	@PostMapping(value = "Client")
+	@PostMapping(value = "client")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {
 
