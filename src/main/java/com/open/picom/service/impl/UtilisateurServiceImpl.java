@@ -29,7 +29,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Utilisateur recupererUtilisateur(String email, String motDePasse) {
 		Utilisateur utilisateur = utilisateurDao.findLastByEmailAndMotDePasse(email, motDePasse); 
-		System.out.println(utilisateur.getClass());
+		System.out.println(utilisateur);
 		return utilisateur;
 	}
 

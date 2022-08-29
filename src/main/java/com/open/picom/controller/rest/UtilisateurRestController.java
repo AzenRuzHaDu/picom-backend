@@ -19,6 +19,7 @@ import com.open.picom.business.Client;
 import com.open.picom.business.Utilisateur;
 import com.open.picom.dto.AdministrateurDto;
 import com.open.picom.dto.ClientDto;
+import com.open.picom.dto.LoginDto;
 import com.open.picom.service.UtilisateurService;
 
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class UtilisateurRestController {
 
 	private final UtilisateurService utilisateurService;
 	
-	@PostMapping(value = "ClientDto")
+	@PostMapping(value = "Client")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {
 
@@ -46,9 +47,8 @@ public class UtilisateurRestController {
 	}
 	
 	@PostMapping("login")
-	public Utilisateur utilisateurGetByEmailAndMotDePasse(@RequestParam String email,
-															@RequestParam String motDePasse) {
-		return utilisateurService.recupererUtilisateur(email, motDePasse);
+	public Utilisateur utilisateurGetByEmailAndMotDePasse(@RequestBody LoginDto loginDto) {
+		return utilisateurService.recupererUtilisateur(loginDto.getEmail(), loginDto.getMotDePasse());
 	}
 	
 
