@@ -11,9 +11,9 @@ import com.open.picom.dao.AdministrateurDao;
 import com.open.picom.dao.ClientDao;
 import com.open.picom.dao.UtilisateurDao;
 import com.open.picom.dto.ClientDto;
+import com.open.picom.exception.ClientExistantException;
 import com.open.picom.service.UtilisateurService;
 
-import exception.clientExistantException;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -42,7 +42,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Client enregistrerClient(@Valid Client client) {
 		if (clientDao.findByEmail(client.getEmail())!=null) {
-			throw new clientExistantException();
+			throw new ClientExistantException("Email deja existant");
 		}
 		clientDao.save(client);
 		return client;
@@ -55,14 +55,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		
 	}
 
-	@Override
-	public ClientDto enregistrerClient(@Valid ClientDto clientDto) {
-		if (clientDao.findByEmail(clientDto.getEmail())!=null) {
-			throw new clientExistantException();
-		}
-		clientDao.save(clientDto);
-		return clientDto;		
-	}
+//	@Override
+//	public ClientDto enregistrerClient(@Valid ClientDto clientDto) {
+//		if (clientDao.findByEmail(clientDto.getEmail())!=null) {
+//			throw new clientExistantException();
+//		}
+//		clientDao.save(clientDto);
+//		return clientDto;		
+//	}
 
 	@Override
 	public Administrateur recupererUtilisateur(Long id) {

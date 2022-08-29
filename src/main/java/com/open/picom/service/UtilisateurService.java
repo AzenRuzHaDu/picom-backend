@@ -16,7 +16,7 @@ public interface UtilisateurService {
 	Client enregistrerClient(@Valid Client client);
 
 	// enregistrement d'un utilisateur client dto
-	ClientDto enregistrerClient(@Valid ClientDto clientDto);
+	//ClientDto enregistrerClient(@Valid ClientDto clientDto);
 
 	// recherche d'un utilisateur avec son mail et mot de passe
 	Utilisateur recupererUtilisateur(String email, String motDePasse);
