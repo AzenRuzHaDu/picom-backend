@@ -1,5 +1,7 @@
 package com.open.picom.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,20 @@ import lombok.AllArgsConstructor;
 public class ZoneServiceImpl implements ZoneService {
 
 	
-	ZoneDao zoneDao;
+	private final ZoneDao zoneDao;
+
 	@Override
 	public Zone recupererZone(Long id) {
 		return zoneDao.findById(id).orElse(null);
 			
 	}
+
+	@Override
+	public List<Zone> listeDesZones() {
+		
+		return zoneDao.findAll();
+	}
+
+	
 
 }

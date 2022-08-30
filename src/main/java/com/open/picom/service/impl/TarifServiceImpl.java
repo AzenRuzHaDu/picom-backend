@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class TarifServiceImpl implements TarifService {
 
 	private final TarifDao tarifDao;
+	
 	@Override
 	public List<Tarif> listeDesTarifs() {
 		return tarifDao.findAll();

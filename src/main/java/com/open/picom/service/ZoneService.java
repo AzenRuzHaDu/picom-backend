@@ -8,5 +8,5 @@ public interface ZoneService {
 
 	public Zone recupererZone(Long id);
 		
-	
+	public List<Zone> listeDesZones(); 
 }
