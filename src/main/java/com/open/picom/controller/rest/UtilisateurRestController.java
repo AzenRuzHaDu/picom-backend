@@ -34,7 +34,6 @@ public class UtilisateurRestController {
 	@PostMapping(value = "ClientDto")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client ajouterClient(@Valid @RequestBody ClientDto clientDto, BindingResult result) {
-
 		Client client = new Client();
 		client.setNom(clientDto.getNom());
 		client.setPrenom(clientDto.getPrenom());

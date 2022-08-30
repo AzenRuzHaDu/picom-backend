@@ -32,5 +32,4 @@ public class Client extends Utilisateur {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Annonce> annonces;
-    
 }
