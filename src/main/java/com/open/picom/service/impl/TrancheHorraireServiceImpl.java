@@ -1,5 +1,7 @@
 package com.open.picom.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.open.picom.business.TrancheHorraire;
@@ -16,6 +18,11 @@ public class TrancheHorraireServiceImpl implements TrancheHorraireService {
 	public TrancheHorraire recupererTrancheHoraire(Long id) {
 		return  trancheHorraireDao.findById(id).orElse(null);
 		
+	}
+	@Override
+	public List<TrancheHorraire> listeDesTranchesHoraires() {
+		// TODO Auto-generated method stub
+		return trancheHorraireDao.findAll();
 	}
 
 }

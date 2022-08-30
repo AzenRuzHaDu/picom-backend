@@ -1,5 +1,6 @@
 package com.open.picom.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,8 +37,8 @@ public class AnnonceDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    private LocalDateTime dateHeureCreation;
+    // @NotNull
+    // private LocalDateTime dateHeureCreation;
     
     @NotNull
     @FutureOrPresent(message = "Merci d'entrer la date d'aujourd'hui ou une date future")
