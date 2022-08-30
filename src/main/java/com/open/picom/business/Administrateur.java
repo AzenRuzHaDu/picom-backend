@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class Administrateur extends Utilisateur {
-    
+    private String role = "admin";
 }
